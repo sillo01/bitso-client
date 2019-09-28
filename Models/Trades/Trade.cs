@@ -1,0 +1,14 @@
+using System;
+
+namespace bitso_client.Models.Trades
+{
+    public class Trades
+    {
+        public string book { get; set; }
+        public DateTime created_at { get; set; }
+        public string amount { get; set; }
+        public string maker_side { get; set; }
+        public string price { get; set; }
+        public string tid { get; set; }
+    }
+}
