@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using bitso_client.Models;
 
 namespace bitso_client.RestApi
 {
@@ -36,7 +37,12 @@ namespace bitso_client.RestApi
             return apiResponse.Payload;
         }
 
-        public async Task<bitso_client.Models.Trades.Trades[]> GetTrades(string book)
+        public async Task<bitso_client.Models.Trades.Trade[]> GetTrades(
+            string book,
+            int marker,
+            Sort sort,
+            int limit
+            )
         {
             string queryParams = $"book={book}";
             string url = $"{baseUrl}/trades/?{queryParams}";

@@ -2,7 +2,7 @@ using System;
 
 namespace bitso_client.Models.Trades
 {
-    public class Trades
+    public class Trade
     {
         public string book { get; set; }
         public DateTime created_at { get; set; }
