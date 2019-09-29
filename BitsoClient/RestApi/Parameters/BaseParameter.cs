@@ -2,7 +2,7 @@ namespace BitsoClient.RestApi.Parameters
 {
     public interface IParameter
     {
-        
+        bool HasValue { get; set; }
     }
     public abstract class BaseParameter<T> : IParameter
     {

@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Collections.Generic;
 
 namespace BitsoClient.RestApi.Parameters
 {
@@ -5,7 +7,8 @@ namespace BitsoClient.RestApi.Parameters
     {
         public static string ToQueryString(params IParameter[] parameters)
         {
-            return "?" + string.Join<IParameter>("&", parameters);
+            IEnumerable<IParameter> notNullParams = parameters.Where(p => p.HasValue);
+            return "?" + string.Join<IParameter>("&", notNullParams);
         }
     }
     
