@@ -6,14 +6,14 @@ using BitsoClient.RestApi.Parameters;
 
 namespace BitsoClient.RestApi
 {
-    public class PublicClient
+    public class PublicApiClient
     {
-        private readonly HttpClient client;
+        private readonly IHttpRequester _requester;
         private readonly string baseUrl;
 
-        public PublicClient(HttpClient client, string baseUrl)
+        public PublicApiClient(IHttpRequester requester, string baseUrl)
         {
-            this.client = client;
+            _requester = requester;
             this.baseUrl = baseUrl;
         }
 
@@ -27,7 +27,9 @@ namespace BitsoClient.RestApi
             return apiResponse.Payload;
         }
 
-        public async Task<BitsoClient.Models.OrderBook.Payload> GetOrderBook(string book, bool? aggregate = null)
+        public async Task<BitsoClient.Models.OrderBook.Payload> GetOrderBook(
+            string book,
+            bool? aggregate = null)
         {
             string queryString = Params.ToQueryString(new Book(book), new Aggregate(aggregate));
             string url = $"{baseUrl}/order_book/{queryString}";
@@ -39,9 +41,9 @@ namespace BitsoClient.RestApi
 
         public async Task<BitsoClient.Models.Trades.Trade[]> GetTrades(
             string book,
-            int? marker,
-            int? limit,
-            string sort = null)
+            int? marker = null,
+            string sort = null,
+            int? limit = null)
         {
             string queryString = Params.ToQueryString(
                 new Book(book),
@@ -57,8 +59,7 @@ namespace BitsoClient.RestApi
 
         private async Task<T> Get<T>(string url)
         {
-            HttpResponseMessage response = await client.GetAsync(url);
-            string jsonContent = await response.Content.ReadAsStringAsync();
+            string jsonContent = await _requester.GetAsync(url);
             return  JsonConvert.DeserializeObject<T>(jsonContent);
         }
     }
