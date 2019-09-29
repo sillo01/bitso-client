@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 
 namespace BitsoClient.Models.OrderBook
 {
@@ -10,5 +9,10 @@ namespace BitsoClient.Models.OrderBook
 
         public DateTime updated_at { get; set; }
         public string sequence { get; set; }
+
+        public override string ToString()
+        {
+            return $"Asks: {string.Join<Order>(";", Asks)}\nBids: {string.Join<Order>(";", Asks)}";
+        }
     }
 }

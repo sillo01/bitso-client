@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitsoClient", "BitsoClient\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitsoClient.Tests", "BitsoClient.Tests\BitsoClient.Tests.csproj", "{AF21441A-1E47-4E55-972A-954A3FC56C98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitsoClient.Examples", "BitsoClient.Examples\BitsoClient.Examples.csproj", "{45C7D1D5-7070-4CF5-8C17-F2D7F7379A75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{AF21441A-1E47-4E55-972A-954A3FC56C98}.Release|x64.Build.0 = Release|Any CPU
 		{AF21441A-1E47-4E55-972A-954A3FC56C98}.Release|x86.ActiveCfg = Release|Any CPU
 		{AF21441A-1E47-4E55-972A-954A3FC56C98}.Release|x86.Build.0 = Release|Any CPU
+		{45C7D1D5-7070-4CF5-8C17-F2D7F7379A75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C7D1D5-7070-4CF5-8C17-F2D7F7379A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C7D1D5-7070-4CF5-8C17-F2D7F7379A75}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{45C7D1D5-7070-4CF5-8C17-F2D7F7379A75}.Debug|x64.Build.0 = Debug|Any CPU
+		{45C7D1D5-7070-4CF5-8C17-F2D7F7379A75}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{45C7D1D5-7070-4CF5-8C17-F2D7F7379A75}.Debug|x86.Build.0 = Debug|Any CPU
+		{45C7D1D5-7070-4CF5-8C17-F2D7F7379A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C7D1D5-7070-4CF5-8C17-F2D7F7379A75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45C7D1D5-7070-4CF5-8C17-F2D7F7379A75}.Release|x64.ActiveCfg = Release|Any CPU
+		{45C7D1D5-7070-4CF5-8C17-F2D7F7379A75}.Release|x64.Build.0 = Release|Any CPU
+		{45C7D1D5-7070-4CF5-8C17-F2D7F7379A75}.Release|x86.ActiveCfg = Release|Any CPU
+		{45C7D1D5-7070-4CF5-8C17-F2D7F7379A75}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

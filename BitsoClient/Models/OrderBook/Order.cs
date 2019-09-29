@@ -23,7 +23,7 @@ namespace BitsoClient.Models.OrderBook
 
         public override string ToString()
         {
-            return $"Price ${this.price}\nAmount {this.amount}\nBook {this.book}";
+            return $"Price ${this.price}, Amount {this.amount}, Book {this.book}";
         }
     }
 }

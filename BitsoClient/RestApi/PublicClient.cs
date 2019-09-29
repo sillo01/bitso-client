@@ -27,7 +27,7 @@ namespace BitsoClient.RestApi
             return apiResponse.Payload;
         }
 
-        public async Task<BitsoClient.Models.OrderBook.Payload> GetOrderBook(string book, bool? aggregate)
+        public async Task<BitsoClient.Models.OrderBook.Payload> GetOrderBook(string book, bool? aggregate = null)
         {
             string queryString = Params.ToQueryString(new Book(book), new Aggregate(aggregate));
             string url = $"{baseUrl}/order_book/{queryString}";
