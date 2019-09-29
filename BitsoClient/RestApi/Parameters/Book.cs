@@ -8,7 +8,7 @@ namespace BitsoClient.RestApi.Parameters
         {
             if(Required && string.IsNullOrEmpty(value))
             {
-                throw new ArgumentException("Parameter 'value' must have a value");
+                throw new ArgumentNullException("Parameter 'value' must have a value");
             }
             HasValue = true;
             Value = value;

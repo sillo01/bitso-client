@@ -12,7 +12,7 @@ namespace BitsoClient.RestApi.Parameters
             {
                 if (value.Value > MaxValue)
                 {
-                    throw new ArgumentException($"Max allowed value is {MaxValue}");
+                    throw new ArgumentOutOfRangeException($"Max allowed value is {MaxValue}");
                 }
                 Value = value.Value;
             }
