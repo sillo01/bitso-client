@@ -9,6 +9,6 @@ namespace bitso_client.Models.Trades
         public string amount { get; set; }
         public string maker_side { get; set; }
         public string price { get; set; }
-        public string tid { get; set; }
+        public int tid { get; set; }
     }
 }
