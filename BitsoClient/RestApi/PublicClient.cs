@@ -40,8 +40,8 @@ namespace bitso_client.RestApi
         public async Task<bitso_client.Models.Trades.Trade[]> GetTrades(
             string book,
             int? marker,
-            string? sort,
-            int? limit)
+            int? limit,
+            string sort = null)
         {
             string queryString = Params.ToQueryString(
                 new Book(book),

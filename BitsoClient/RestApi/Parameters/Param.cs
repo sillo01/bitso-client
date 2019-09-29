@@ -5,7 +5,7 @@ namespace bitso_client.RestApi.Parameters
     {
         public static string ToQueryString(params IParameter[] parameters)
         {
-            return "?" + string.Join<IParameter>('&', parameters);
+            return "?" + string.Join<IParameter>("&", parameters);
         }
     }
     
