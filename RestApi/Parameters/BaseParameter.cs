@@ -1,6 +1,10 @@
 namespace bitso_client.RestApi.Parameters
 {
-    public abstract class BaseParameter<T>
+    public interface IParameter
+    {
+        
+    }
+    public abstract class BaseParameter<T> : IParameter
     {
         public BaseParameter() {}
         public BaseParameter(string name, bool req = false)

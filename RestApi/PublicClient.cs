@@ -1,7 +1,8 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using bitso_client.Models;
+
+using bitso_client.RestApi.Parameters;
 
 namespace bitso_client.RestApi
 {
@@ -18,8 +19,8 @@ namespace bitso_client.RestApi
 
         public async Task<bitso_client.Models.Ticker.Payload> GetTicker(string book)
         {
-            string queryParams = $"book={book}";
-            string url = $"{baseUrl}/ticker/?{queryParams}";
+            string queryString = Params.ToQueryString(new Book(book));
+            string url = $"{baseUrl}/ticker/{queryString}";
             
             var apiResponse = await Get<bitso_client.Models.Ticker.Response>(url);
 
@@ -28,9 +29,8 @@ namespace bitso_client.RestApi
 
         public async Task<bitso_client.Models.OrderBook.Payload> GetOrderBook(string book, bool? aggregate)
         {
-            string queryParams = $"book={book}" 
-                + (aggregate.HasValue ? $"aggregate={aggregate.Value.ToString()}" : "");
-            string url = $"{baseUrl}/order_book/?{queryParams}";
+            string queryString = Params.ToQueryString(new Book(book), new Aggregate(aggregate));
+            string url = $"{baseUrl}/order_book/{queryString}";
             
             var apiResponse = await Get<bitso_client.Models.OrderBook.Response>(url);
 
@@ -39,13 +39,16 @@ namespace bitso_client.RestApi
 
         public async Task<bitso_client.Models.Trades.Trade[]> GetTrades(
             string book,
-            int marker,
-            Sort sort,
-            int limit
-            )
+            int? marker,
+            string? sort,
+            int? limit)
         {
-            string queryParams = $"book={book}";
-            string url = $"{baseUrl}/trades/?{queryParams}";
+            string queryString = Params.ToQueryString(
+                new Book(book),
+                new Marker(marker),
+                new Sort(sort),
+                new Limit(limit));
+            string url = $"{baseUrl}/trades/{queryString}";
 
             var apiResponse = await Get<bitso_client.Models.Trades.Response>(url);
 
