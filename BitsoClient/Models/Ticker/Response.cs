@@ -1,4 +1,4 @@
-namespace bitso_client.Models.Ticker
+namespace BitsoClient.Models.Ticker
 {
     public class Response : ApiResponse<Payload>
     {

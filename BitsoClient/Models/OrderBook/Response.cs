@@ -1,4 +1,4 @@
-namespace bitso_client.Models.OrderBook
+namespace BitsoClient.Models.OrderBook
 {
     public class Response : ApiResponse<Payload>
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace bitso_client.Models.OrderBook
+namespace BitsoClient.Models.OrderBook
 {
     public class Payload
     {

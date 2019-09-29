@@ -1,4 +1,4 @@
-namespace bitso_client.Models.Trades
+namespace BitsoClient.Models.Trades
 {
     public class Response : ApiResponse<Trade[]>
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace bitso_client.Models.Trades
+namespace BitsoClient.Models.Trades
 {
     public class Trade
     {

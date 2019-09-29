@@ -1,4 +1,4 @@
-namespace bitso_client.Models
+namespace BitsoClient.Models
 {
     public abstract class ApiResponse<T>
     {

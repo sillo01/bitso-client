@@ -1,6 +1,6 @@
 using System;
 
-namespace bitso_client.RestApi.Parameters
+namespace BitsoClient.RestApi.Parameters
 {
     public class Limit : BaseParameter<int>
     {

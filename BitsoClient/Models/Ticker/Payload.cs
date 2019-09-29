@@ -1,6 +1,6 @@
 using System;
 
-namespace bitso_client.Models.Ticker
+namespace BitsoClient.Models.Ticker
 {
     public class Payload
     {

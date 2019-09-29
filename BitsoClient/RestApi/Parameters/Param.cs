@@ -1,5 +1,5 @@
 
-namespace bitso_client.RestApi.Parameters
+namespace BitsoClient.RestApi.Parameters
 {
     public class Params
     {

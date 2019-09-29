@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace bitso_client.RestApi.Parameters
+namespace BitsoClient.RestApi.Parameters
 {
     public class Sort : BaseParameter<string>
     {
