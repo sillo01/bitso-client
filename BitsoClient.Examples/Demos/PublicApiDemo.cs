@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using BitsoClient.RestApi;
 
-namespace BitsoClient.Examples
+namespace BitsoClient.Examples.Demos
 {
     public class PublicApiDemo
     {
