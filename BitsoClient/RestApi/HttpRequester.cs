@@ -26,7 +26,7 @@ namespace BitsoClient.RestApi
 
         public async Task<HttpResponseMessage> SendAsycn(HttpRequestMessage requestMessage)
         {
-            return await _client.SendAsync(requestMessage)
+            return await _client.SendAsync(requestMessage);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace BitsoClient.RestApi
 
         public PrivateApiClient(IHttpRequester requester, ClientConfiguration config)
         {
+            _requester = requester;
             baseUrl = config.BaseUrl;
             key = config.ApiKey;
             secret = Encoding.UTF8.GetBytes(config.ApiSecret);
@@ -22,7 +23,7 @@ namespace BitsoClient.RestApi
         {
             using(HMACSHA256 hmac = new HMACSHA256(secret))
             {
-                var request = options.GetRequestMessage(hmac, baseUrl, key);
+                var request = options.ComposeRequestMessage(hmac, baseUrl, key);
                 var response = await _requester.SendAsycn(request);
                 ApiResponse apiResponse = new ApiResponse()
                 {
