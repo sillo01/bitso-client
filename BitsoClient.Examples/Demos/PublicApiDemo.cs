@@ -8,10 +8,10 @@ namespace BitsoClient.Examples.Demos
     public class PublicApiDemo
     {
         private readonly PublicApiClient client;
-        private readonly string baseUrl = "https://api.bitso.com/v3/";
 
         public PublicApiDemo(HttpClient client)
         {
+            string baseUrl = Environment.GetEnvironmentVariable("BaseUrl");
             var requester = new HttpRequester(client);
             this.client = new PublicApiClient(requester, baseUrl);
         }
