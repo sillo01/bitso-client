@@ -1,7 +1,6 @@
-using System;
 using System.Text;
+using System.Threading.Tasks;
 using System.Security.Cryptography;
-using System.Net.Http;
 
 namespace BitsoClient.RestApi
 {
@@ -19,24 +18,20 @@ namespace BitsoClient.RestApi
             secret = Encoding.UTF8.GetBytes(config.ApiSecret);
         }
 
-        void ComposeRequest(RequestOptions options)
+        public async Task<ApiResponse> SendRequest(RequestOptions options)
         {
-            long nonce = DateTime.Now.ToFileTimeUtc();
-            string signature = null;
-
             using(HMACSHA256 hmac = new HMACSHA256(secret))
             {
-                byte[] binarySignature = hmac.ComputeHash(options.ToSignatureFormat(nonce));
-
-                StringBuilder sb = new StringBuilder(binarySignature.Length * 2);
-                foreach (byte b in binarySignature)
-                    sb.AppendFormat("{0:x2}", b);
-
-                signature = sb.ToString();
+                var request = options.GetRequestMessage(hmac, baseUrl, key);
+                var response = await _requester.SendAsycn(request);
+                ApiResponse apiResponse = new ApiResponse()
+                {
+                    Success = response.IsSuccessStatusCode,
+                    StatusCode = (int)response.StatusCode,
+                    Content = await response.Content.ReadAsStringAsync(),
+                };
+                return apiResponse;
             }
-
-            string authHeader = $"Bitso {key}:{nonce}:{signature}";
-            HttpRequestMessage request = new HttpRequestMessage();
         }
     }
 }
