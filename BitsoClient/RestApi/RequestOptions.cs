@@ -37,17 +37,18 @@ namespace BitsoClient.RestApi
             Payload = JsonConvert.SerializeObject(payload);
         }
 
-        public HttpRequestMessage GetRequestMessage(HMACSHA256 hmac, string baseUrl, string key)
+        public HttpRequestMessage ComposeRequestMessage(HMACSHA256 hmac, string baseUrl, string key)
         {
             long nonce = DateTime.Now.ToFileTimeUtc();
             string signature = GetSignatureHexString(nonce, hmac);
-            string authHeader = $"{key}:{nonce}:{signature}";
+            string authHeader = $"Bitso {key}:{nonce}:{signature}";
 
             HttpRequestMessage request = new HttpRequestMessage(
                 GetHttpMethod(),
                 baseUrl + Path);
 
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bitso", authHeader);
+            request.Headers.Add("Authorization", authHeader);
+
             if (!string.IsNullOrEmpty(Payload))
             {
                 request.Content = new StringContent(
@@ -66,8 +67,9 @@ namespace BitsoClient.RestApi
             byte[] encodedSignature = hmac.ComputeHash(binSignature);
 
             StringBuilder sb = new StringBuilder(binSignature.Length * 2);
-                foreach (byte b in binSignature)
-                    sb.AppendFormat("{0:x2}", b);
+
+            foreach (byte b in binSignature)
+                sb.AppendFormat("{0:x2}", b);
 
             return sb.ToString();
         }

@@ -14,7 +14,7 @@ namespace BitsoClient.Examples.Demos
             string baseUrl = Environment.GetEnvironmentVariable("BaseUrl");
             string key = Environment.GetEnvironmentVariable("ApiKey");
             string secret = Environment.GetEnvironmentVariable("ApiSecret");
-
+            
             ClientConfiguration config = new ClientConfiguration(baseUrl, key, secret);
             HttpRequester requester = new HttpRequester(client);
 
@@ -23,7 +23,7 @@ namespace BitsoClient.Examples.Demos
 
         public async Task PrintAccountStatus()
         {
-            RequestOptions options = new RequestOptions("get", "account_status");
+            RequestOptions options = new RequestOptions("GET", "/v3/account_status/");
             var response = await apiClient.SendRequest(options);
 
             Console.WriteLine(response.Content);
