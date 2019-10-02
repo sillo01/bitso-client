@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Net.Http;
+
 using BitsoClient.RestApi;
 
 namespace BitsoClient.Examples.Demos
@@ -23,7 +24,7 @@ namespace BitsoClient.Examples.Demos
 
         public async Task PrintAccountStatus()
         {
-            RequestOptions options = new RequestOptions("GET", "/v3/account_status/");
+            RequestOptions options = new RequestOptions("GET", "/v3/balance/");
             var response = await apiClient.SendRequest(options);
 
             Console.WriteLine(response.Content);

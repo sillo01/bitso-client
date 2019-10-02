@@ -19,7 +19,7 @@ namespace BitsoClient.Tests.RestApi
             using (HMACSHA256 hmac = new HMACSHA256(encodedSecret))
             {
                 string expectedSignature = "283c1a46963f728ae9e3dd3beb1dfd3d0135fb6fda62492fd0005d9ac48bde3d";
-                string hexSignature = options.GetSignatureHexString(fakeNonce, hmac);
+                string hexSignature = options.GetSignature(fakeNonce, hmac);
                 Assert.Equal(expectedSignature, hexSignature);
             }
         }
