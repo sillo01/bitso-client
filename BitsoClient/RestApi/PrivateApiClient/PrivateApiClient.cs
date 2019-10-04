@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 
 namespace BitsoClient.RestApi
 {
-    public class PrivateApiClient
+    public partial class PrivateApiClient
     {
         private readonly IHttpRequester _requester;
         private readonly string baseUrl;
@@ -14,7 +14,7 @@ namespace BitsoClient.RestApi
         public PrivateApiClient(IHttpRequester requester, ClientConfiguration config)
         {
             _requester = requester;
-            baseUrl = config.BaseUrl;
+            baseUrl = $"{config.BaseUrl}/{config.ApiVersion}";
             key = config.ApiKey;
             secret = Encoding.UTF8.GetBytes(config.ApiSecret);
         }
