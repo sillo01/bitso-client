@@ -24,16 +24,9 @@ namespace BitsoClient.RestApi
             }
             Method = method.ToUpper();
             Path = path;
-            Payload = "";
         }
-        public RequestOptions(string method, string path, object payload)
+        public RequestOptions(string method, string path, object payload) : this(method, path)
         {
-            if (!AllowedMethods.Contains(method.ToUpper()))
-            {
-                throw new ArgumentException("Only 'get' and 'post' methods are allowed");
-            }
-            Method = method.ToUpper();
-            Path = path;
             Payload = JsonConvert.SerializeObject(payload);
         }
 
