@@ -15,8 +15,9 @@ namespace BitsoClient.Examples.Demos
             string baseUrl = Environment.GetEnvironmentVariable("BaseUrl");
             string key = Environment.GetEnvironmentVariable("ApiKey");
             string secret = Environment.GetEnvironmentVariable("ApiSecret");
+            string version = Environment.GetEnvironmentVariable("ApiVersion");
             
-            ClientConfiguration config = new ClientConfiguration(baseUrl, key, secret);
+            ClientConfiguration config = new ClientConfiguration(baseUrl, key, secret, version);
             HttpRequester requester = new HttpRequester(client);
 
             apiClient = new PrivateApiClient(requester, config);
