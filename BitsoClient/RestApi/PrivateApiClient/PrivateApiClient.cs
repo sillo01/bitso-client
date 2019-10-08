@@ -1,6 +1,9 @@
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using Newtonsoft.Json;
+
+using BitsoClient.Models;
 
 namespace BitsoClient.RestApi
 {
@@ -19,17 +22,22 @@ namespace BitsoClient.RestApi
             secret = Encoding.UTF8.GetBytes(config.ApiSecret);
         }
 
-        public async Task<ApiResponse> SendRequest(RequestOptions options)
+        public async Task<ApiResponse<T>> SendRequest<T>(RequestOptions options)
         {
             using(HMACSHA256 hmac = new HMACSHA256(secret))
             {
                 var request = options.ComposeRequestMessage(hmac, baseUrl, key);
                 var response = await _requester.SendAsycn(request);
-                ApiResponse apiResponse = new ApiResponse()
+                string content = await response.Content.ReadAsStringAsync();
+
+                string payloadStr = await response.Content.ReadAsStringAsync();
+                T payload = JsonConvert.DeserializeObject<T>(payloadStr);
+                
+                ApiResponse<T> apiResponse = new ApiResponse<T>()
                 {
                     Success = response.IsSuccessStatusCode,
-                    StatusCode = (int)response.StatusCode,
-                    Content = await response.Content.ReadAsStringAsync(),
+                    Status = (int)response.StatusCode,
+                    Payload = payload,
                 };
                 return apiResponse;
             }

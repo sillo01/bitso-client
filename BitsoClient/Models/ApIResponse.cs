@@ -1,8 +1,9 @@
 namespace BitsoClient.Models
 {
-    public abstract class ApiResponse<T>
+    public class ApiResponse<T>
     {
         public bool Success { get; set; }
+        public int Status { get; set; }
         public T Payload { get; set; }
     }
 }
