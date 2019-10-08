@@ -30,5 +30,12 @@ namespace BitsoClient.Examples.Demos
 
             Console.WriteLine(JsonConvert.SerializeObject(response.Payload));
         }
+
+        public async Task PrintOpenOrders()
+        {
+            var response = await apiClient.GetOpenOrders("eth_mxn");
+
+            Console.WriteLine(JsonConvert.SerializeObject(response.Payload));
+        }
     }
 }
