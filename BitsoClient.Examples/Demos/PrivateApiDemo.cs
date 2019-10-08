@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Net.Http;
+using Newtonsoft.Json;
 
 using BitsoClient.RestApi;
 
@@ -25,10 +26,9 @@ namespace BitsoClient.Examples.Demos
 
         public async Task PrintAccountStatus()
         {
-            RequestOptions options = new RequestOptions("GET", "/v3/balance/");
-            var response = await apiClient.SendRequest(options);
+            var response = await apiClient.GetAccountStatus();
 
-            Console.WriteLine(response.Content);
+            Console.WriteLine(JsonConvert.SerializeObject(response.Payload));
         }
     }
 }

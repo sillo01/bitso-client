@@ -8,16 +8,26 @@ namespace BitsoClient.RestApi
         {
             string endpoint = "account_status";
             RequestOptions options = new RequestOptions("GET", $"{baseUrl}/{endpoint}");
-            BitsoClient.Models.AccountStatus.Response response = (BitsoClient.Models.AccountStatus.Response)(await SendRequest<BitsoClient.Models.AccountStatus.Payload>(options));
-            return response;
+            var response = await SendRequest<BitsoClient.Models.AccountStatus.Payload>(options);
+            return new Models.AccountStatus.Response()
+            {
+                Success = response.Success,
+                Status = response.Status,
+                Payload = response.Payload
+            };
         }
 
         public async Task<BitsoClient.Models.AccountBalance.Response> GetAccountBalance()
         {
             string endpoint = "balance";
             RequestOptions options = new RequestOptions("GET", $"{baseUrl}/{endpoint}");
-            BitsoClient.Models.AccountBalance.Response response = (BitsoClient.Models.AccountBalance.Response)(await SendRequest<BitsoClient.Models.AccountBalance.Payload>(options));
-            return response;
+            var response = await SendRequest<BitsoClient.Models.AccountBalance.Payload>(options);
+            return new Models.AccountBalance.Response()
+            {
+                Success = response.Success,
+                Status = response.Status,
+                Payload = response.Payload
+            };
         }
     }
 }
