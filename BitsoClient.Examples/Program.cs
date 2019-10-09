@@ -18,7 +18,7 @@ namespace BitsoClient.Examples
             LoadConfig();
 
             var demo = new PrivateApiDemo(client);
-            await demo.PrintOpenOrders();
+            await demo.PrintPlaceOrder();
         }
 
         private static void LoadConfig()

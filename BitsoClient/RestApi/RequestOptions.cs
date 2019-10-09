@@ -14,7 +14,7 @@ namespace BitsoClient.RestApi
         public string Path { get; }
         public string Payload { get; set; }
 
-        private string[] AllowedMethods = { "GET", "POST" };
+        private string[] AllowedMethods = { "GET", "POST", "DELETE" };
 
         public RequestOptions(string method, string path)
         {
@@ -78,8 +78,10 @@ namespace BitsoClient.RestApi
         {
             if (Method.Equals("GET"))
                 return HttpMethod.Get;
-            else
+            else if (Method.Equals("POST"))
                 return HttpMethod.Post;
+            else
+                return HttpMethod.Delete;
         }
     }
 }

@@ -51,5 +51,42 @@ namespace BitsoClient.Examples.Demos
                 Console.WriteLine(JsonConvert.SerializeObject(response.Error));
             }
         }
+
+        public async Task PrintCancelOrder()
+        {
+            string orderId = "ZqXWSvtXUIPLRZz9";
+            var response = await apiClient.CancelOrder(orderId);
+
+            if (response.Success)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(response.Payload));
+            }
+            else
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(response.Error));
+            }
+        }
+
+        public async Task PrintPlaceOrder()
+        {
+            Models.Orders.NewOrder order = new Models.Orders.NewOrder()
+            {
+                book = "eth_mxn",
+                side = "buy",
+                type = "limit",
+                major = "0.03631629",
+                price = "3496.01"
+            };
+            var response = await apiClient.PlaceOrder(order);
+
+            if (response.Success)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(response.Payload));
+            }
+            else
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(response.Error));
+            }
+        }
     }
 }

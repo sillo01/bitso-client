@@ -19,5 +19,26 @@ namespace BitsoClient.RestApi
                 Error = respone.Error
             };
         }
+
+        public async Task<Models.ApiResponse<string[]>> CancelOrder(string orderId)
+        {
+            string endpoint = $"/{apiVersion}/orders/{orderId}/";
+            RequestOptions options = new RequestOptions("DELETE", endpoint);
+            return await SendRequest<string[]>(options);
+        }
+
+        public async Task<Models.ApiResponse<string[]>> CancelAllOrders()
+        {
+            string endpoint = $"/{apiVersion}/orders/all/";
+            RequestOptions options = new RequestOptions("DELETE", endpoint);
+            return await SendRequest<string[]>(options);
+        }
+
+        public async Task<Models.ApiResponse<Models.Orders.Order>> PlaceOrder(Models.Orders.NewOrder order)
+        {
+            string endpoint = $"/{apiVersion}/orders/";
+            RequestOptions options = new RequestOptions("POST", endpoint, order);
+            return await SendRequest<Models.Orders.Order>(options);
+        }
     }
 }
