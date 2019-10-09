@@ -17,7 +17,7 @@ namespace BitsoClient.RestApi
         public PrivateApiClient(IHttpRequester requester, ClientConfiguration config)
         {
             _requester = requester;
-            baseUrl = $"{config.BaseUrl}/{config.ApiVersion}";
+            baseUrl = $"{config.BaseUrl}/{config.ApiVersion}/";
             key = config.ApiKey;
             secret = Encoding.UTF8.GetBytes(config.ApiSecret);
         }

@@ -28,7 +28,14 @@ namespace BitsoClient.Examples.Demos
         {
             var response = await apiClient.GetAccountStatus();
 
-            Console.WriteLine(JsonConvert.SerializeObject(response.Payload));
+            if (response.Success)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(response.Payload));
+            }
+            else
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(response.Error));
+            }
         }
 
         public async Task PrintOpenOrders()

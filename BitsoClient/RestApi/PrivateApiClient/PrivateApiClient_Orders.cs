@@ -10,7 +10,7 @@ namespace BitsoClient.RestApi
         {
             string endpoint = "open_orders";
             string queryString = Params.ToQueryString(new Book(book));
-            RequestOptions options = new RequestOptions("GET", $"/{endpoint}{queryString}");
+            RequestOptions options = new RequestOptions("GET", $"{endpoint}{queryString}");
             var respone = await SendRequest<Models.Orders.Order[]>(options);
             return new Models.Orders.Reponse()
             {
