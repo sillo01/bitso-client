@@ -6,7 +6,7 @@ namespace BitsoClient.RestApi
     {
         public async Task<Models.AccountStatus.Response> GetAccountStatus()
         {
-            string endpoint = "account_status/";
+            string endpoint = $"/{apiVersion}/account_status/";
             RequestOptions options = new RequestOptions("GET", endpoint);
             var response = await SendRequest<Models.AccountStatus.Payload>(options);
             return new Models.AccountStatus.Response()
@@ -19,7 +19,7 @@ namespace BitsoClient.RestApi
 
         public async Task<Models.AccountBalance.Response> GetAccountBalance()
         {
-            string endpoint = "balance/";
+            string endpoint = $"/{apiVersion}/balance/";
             RequestOptions options = new RequestOptions("GET", endpoint);
             var response = await SendRequest<Models.AccountBalance.Payload>(options);
             return new Models.AccountBalance.Response()
