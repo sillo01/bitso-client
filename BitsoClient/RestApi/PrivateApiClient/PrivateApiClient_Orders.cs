@@ -10,13 +10,13 @@ namespace BitsoClient.RestApi
         {
             string endpoint = "open_orders";
             string queryString = Params.ToQueryString(new Book(book));
-            RequestOptions options = new RequestOptions("GET", $"{baseUrl}/{endpoint}{queryString}");
+            RequestOptions options = new RequestOptions("GET", $"/{endpoint}{queryString}");
             var respone = await SendRequest<Models.Orders.Order[]>(options);
             return new Models.Orders.Reponse()
             {
                 Success = respone.Success,
-                Status = respone.Status,
-                Payload = respone.Payload
+                Payload = respone.Payload,
+                Error = respone.Error
             };
         }
     }

@@ -12,8 +12,8 @@ namespace BitsoClient.RestApi
             return new Models.AccountStatus.Response()
             {
                 Success = response.Success,
-                Status = response.Status,
-                Payload = response.Payload
+                Payload = response.Payload,
+                Error = response.Error
             };
         }
 
@@ -25,8 +25,8 @@ namespace BitsoClient.RestApi
             return new Models.AccountBalance.Response()
             {
                 Success = response.Success,
-                Status = response.Status,
-                Payload = response.Payload
+                Payload = response.Payload,
+                Error = response.Error
             };
         }
     }

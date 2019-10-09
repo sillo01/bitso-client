@@ -30,16 +30,7 @@ namespace BitsoClient.RestApi
                 var response = await _requester.SendAsycn(request);
                 string content = await response.Content.ReadAsStringAsync();
 
-                string payloadStr = await response.Content.ReadAsStringAsync();
-                T payload = JsonConvert.DeserializeObject<T>(payloadStr);
-                
-                ApiResponse<T> apiResponse = new ApiResponse<T>()
-                {
-                    Success = response.IsSuccessStatusCode,
-                    Status = (int)response.StatusCode,
-                    Payload = payload,
-                };
-                return apiResponse;
+                return JsonConvert.DeserializeObject<ApiResponse<T>>(content);
             }
         }
     }

@@ -18,13 +18,13 @@ namespace BitsoClient.Examples
             LoadConfig();
 
             var demo = new PrivateApiDemo(client);
-            await demo.PrintAccountStatus();
+            await demo.PrintOpenOrders();
         }
 
         private static void LoadConfig()
         {
             string basePath = Directory.GetCurrentDirectory();
-            string settignsPath = basePath + "/BitsoClient.Examples/appsettings.json";
+            string settignsPath = basePath + "/appsettings.json";
             var settings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(settignsPath));
 
             foreach (var setting in settings)

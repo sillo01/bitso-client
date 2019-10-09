@@ -18,7 +18,7 @@ namespace BitsoClient.Examples.Demos
             string secret = Environment.GetEnvironmentVariable("ApiSecret");
             string version = Environment.GetEnvironmentVariable("ApiVersion");
             
-            ClientConfiguration config = new ClientConfiguration(baseUrl, key, secret, version);
+            ClientConfiguration config = new ClientConfiguration(baseUrl, version, key, secret);
             HttpRequester requester = new HttpRequester(client);
 
             apiClient = new PrivateApiClient(requester, config);
@@ -35,7 +35,14 @@ namespace BitsoClient.Examples.Demos
         {
             var response = await apiClient.GetOpenOrders("eth_mxn");
 
-            Console.WriteLine(JsonConvert.SerializeObject(response.Payload));
+            if (response.Success)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(response.Payload));
+            }
+            else
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(response.Error));
+            }
         }
     }
 }
