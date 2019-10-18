@@ -6,10 +6,18 @@ namespace BitsoClient.RestApi
 {
     public partial class PrivateApiClient
     {
-        public async Task<Models.Orders.Reponse> GetOpenOrders(string book)
+        public async Task<Models.Orders.Reponse> GetOpenOrders(
+            string book,
+            int? marker = null,
+            string sort = null,
+            int? limit = null)
         {
             string endpoint = $"/{apiVersion}/open_orders";
-            string queryString = Params.ToQueryString(new Book(book));
+            string queryString = Params.ToQueryString(
+                new Book(book),
+                new Marker(marker),
+                new Sort(sort),
+                new Limit(limit));
             RequestOptions options = new RequestOptions("GET", $"{endpoint}{queryString}");
             var respone = await SendRequest<Models.Orders.Order[]>(options);
             return new Models.Orders.Reponse()
@@ -34,11 +42,11 @@ namespace BitsoClient.RestApi
             return await SendRequest<string[]>(options);
         }
 
-        public async Task<Models.ApiResponse<Models.Orders.Order>> PlaceOrder(Models.Orders.NewOrder order)
+        public async Task<Models.ApiResponse<Models.Orders.OrderCreated>> PlaceOrder(Models.Orders.NewOrder order)
         {
             string endpoint = $"/{apiVersion}/orders/";
             RequestOptions options = new RequestOptions("POST", endpoint, order);
-            return await SendRequest<Models.Orders.Order>(options);
+            return await SendRequest<Models.Orders.OrderCreated>(options);
         }
     }
 }
