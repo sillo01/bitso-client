@@ -7,6 +7,7 @@ namespace BitsoClient.Models.Orders
         public string book { get; set; }
         public string original_amount { get; set; }
         public string unfiled_amount { get; set; }
+        public string original_value { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
         public string price { get; set; }
