@@ -8,9 +8,9 @@ namespace BitsoClient.Models.Orders
             this.side = side;
             this.type = type;
         }
-        public string book { get; set; }
-        public string side { get; set; }
-        public string type { get; set; }
+        public string book { get; }
+        public string side { get; }
+        public string type { get; }
         public string major { get; set; }
         public string minor { get; set; }
         public string price { get; set; }

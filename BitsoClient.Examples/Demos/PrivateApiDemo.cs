@@ -69,11 +69,8 @@ namespace BitsoClient.Examples.Demos
 
         public async Task PrintPlaceOrder()
         {
-            Models.Orders.NewOrder order = new Models.Orders.NewOrder()
+            Models.Orders.NewOrder order = new Models.Orders.NewOrder("eth_mxn", "buy", "limit")
             {
-                book = "eth_mxn",
-                side = "buy",
-                type = "limit",
                 major = "0.03631629",
                 price = "3496.01"
             };
