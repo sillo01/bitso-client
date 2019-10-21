@@ -71,8 +71,8 @@ namespace BitsoClient.Examples.Demos
         {
             Models.Orders.NewOrder order = new Models.Orders.NewOrder("eth_mxn", "buy", "limit")
             {
-                major = "0.03631629",
-                price = "3496.01"
+                Major = "0.03631629",
+                Price = "3496.01"
             };
             var response = await apiClient.PlaceOrder(order);
 

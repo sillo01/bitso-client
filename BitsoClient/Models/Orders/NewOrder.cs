@@ -1,21 +1,32 @@
+using Newtonsoft.Json;
+
 namespace BitsoClient.Models.Orders
 {
     public class NewOrder
     {
         public NewOrder(string book, string side, string type)
         {
-            this.book = book;
-            this.side = side;
-            this.type = type;
+            this.Book = book;
+            this.Side = side;
+            this.Type = type;
         }
-        public string book { get; }
-        public string side { get; }
-        public string type { get; }
-        public string major { get; set; }
-        public string minor { get; set; }
-        public string price { get; set; }
-        public string stop { get; set; }
-        public string time_in_force { get; set; }
-        public string client_id { get; set; }
+        [JsonPropertyAttribute("book")]
+        public string Book { get; }
+        [JsonPropertyAttribute("side")]
+        public string Side { get; }
+        [JsonPropertyAttribute("type")]
+        public string Type { get; }
+        [JsonPropertyAttribute("major")]
+        public string Major { get; set; }
+        [JsonPropertyAttribute("minor")]
+        public string Minor { get; set; }
+        [JsonPropertyAttribute("price")]
+        public string Price { get; set; }
+        [JsonPropertyAttribute("stop")]
+        public string Stop { get; set; }
+        [JsonPropertyAttribute("time_in_force")]
+        public string TimeInForce { get; set; }
+        [JsonPropertyAttribute("client_id")]
+        public string ClientId { get; set; }
     }
 }
