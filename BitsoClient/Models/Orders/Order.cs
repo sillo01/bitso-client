@@ -1,20 +1,33 @@
 using System;
+using Newtonsoft.Json;
 
 namespace BitsoClient.Models.Orders
 {
     public class Order
     {
-        public string book { get; set; }
-        public string original_amount { get; set; }
-        public string unfiled_amount { get; set; }
-        public string original_value { get; set; }
-        public DateTime created_at { get; set; }
-        public DateTime updated_at { get; set; }
-        public string price { get; set; }
-        public string oid { get; set; }
-        public string client_id { get; set; }
-        public string side { get; set; }
-        public string status { get; set; }
-        public string type { get; set; }
+        [JsonPropertyAttribute("book")]
+        public string Book { get; set; }
+        [JsonPropertyAttribute("original_amount")]
+        public string OriginalAmount { get; set; }
+        [JsonPropertyAttribute("unfilled_amount")]
+        public string UnfilledAmount { get; set; }
+        [JsonPropertyAttribute("original_value")]
+        public string OriginalValue { get; set; }
+        [JsonPropertyAttribute("created_at")]
+        public DateTime CreatedAt { get; set; }
+        [JsonPropertyAttribute("updated_at")]
+        public DateTime UpdatedAt { get; set; }
+        [JsonPropertyAttribute("price")]
+        public string Price { get; set; }
+        [JsonPropertyAttribute("oid")]
+        public string Oid { get; set; }
+        [JsonPropertyAttribute("client_id")]
+        public string ClientId { get; set; }
+        [JsonPropertyAttribute("side")]
+        public string Side { get; set; }
+        [JsonPropertyAttribute("status")]
+        public string Status { get; set; }
+        [JsonPropertyAttribute("type")]
+        public string Type { get; set; }
     }
 }
