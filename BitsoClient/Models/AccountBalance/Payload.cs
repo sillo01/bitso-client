@@ -1,7 +1,10 @@
+using Newtonsoft.Json;
+
 namespace BitsoClient.Models.AccountBalance
 {
     public class Payload
     {
-        public Balance[] balances { get; set; }
+        [JsonPropertyAttribute("balances")]
+        public Balance[] Balances { get; set; }
     }
 }
