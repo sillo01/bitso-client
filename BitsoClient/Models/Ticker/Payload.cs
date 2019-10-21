@@ -1,22 +1,32 @@
 using System;
+using Newtonsoft.Json;
 
 namespace BitsoClient.Models.Ticker
 {
     public class Payload
     {
-        public string book { get; set; }
-        public string volume { get; set; }
-        public string high { get; set; }
-        public string last { get; set; }
-        public string low { get; set; }
-        public string vwap { get; set; }
-        public string ask { get; set; }
-        public string bid { get; set; }
-        public DateTime created_at { get; set; }
+        [JsonPropertyAttribute("book")]
+        public string Book { get; set; }
+        [JsonPropertyAttribute("volume")]
+        public string Volume { get; set; }
+        [JsonPropertyAttribute("high")]
+        public string High { get; set; }
+        [JsonPropertyAttribute("last")]
+        public string Last { get; set; }
+        [JsonPropertyAttribute("low")]
+        public string Low { get; set; }
+        [JsonPropertyAttribute("vwap")]
+        public string Vwap { get; set; }
+        [JsonPropertyAttribute("ask")]
+        public string Ask { get; set; }
+        [JsonPropertyAttribute("bid")]
+        public string Bid { get; set; }
+        [JsonPropertyAttribute("created_at")]
+        public DateTime CreatedAt { get; set; }
 
         public override string ToString()
         {
-            return $"Book: {book}\nHigh: {high}\nLow: {low}";
+            return $"Book: {Book}\nHigh: {High}\nLow: {Low}";
         }
     }
 }

@@ -26,13 +26,13 @@ namespace BitsoClient.Tests.RestApi
         public async Task ParsesTicker()
         {
             var response = await _client.GetTicker("book_name");
-            Assert.Equal("22.31349615", response.volume);
-            Assert.Equal("5750.00", response.high);
-            Assert.Equal("5633.98", response.last);
-            Assert.Equal("5450.00", response.low);
-            Assert.Equal("5393.45", response.vwap);
-            Assert.Equal("5632.24", response.ask);
-            Assert.Equal("5520.01", response.bid);
+            Assert.Equal("22.31349615", response.Volume);
+            Assert.Equal("5750.00", response.High);
+            Assert.Equal("5633.98", response.Last);
+            Assert.Equal("5450.00", response.Low);
+            Assert.Equal("5393.45", response.Vwap);
+            Assert.Equal("5632.24", response.Ask);
+            Assert.Equal("5520.01", response.Bid);
         }
 
         private readonly string _tickerResponse = @"{
