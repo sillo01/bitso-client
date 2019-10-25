@@ -25,7 +25,7 @@ namespace BitsoClient.Tests.RestApi
         [Fact]
         public async Task ParsesTicker()
         {
-            var response = await _client.GetTicker("book_name");
+            var response = await _client.GetTickerAsync("book_name");
             Assert.Equal("22.31349615", response.Volume);
             Assert.Equal("5750.00", response.High);
             Assert.Equal("5633.98", response.Last);

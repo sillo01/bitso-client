@@ -18,7 +18,7 @@ namespace BitsoClient.Examples.Demos
 
         public async Task PrintOrderBook()
         {
-            var payload = await client.GetOrderBook("btc_mxn");
+            var payload = await client.GetOrderBookAsync("btc_mxn");
 
             Console.WriteLine(payload);
         }

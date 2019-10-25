@@ -26,7 +26,7 @@ namespace BitsoClient.Examples.Demos
 
         public async Task PrintAccountStatus()
         {
-            var response = await apiClient.GetAccountStatus();
+            var response = await apiClient.GetAccountStatusAsync();
 
             if (response.Success)
             {
@@ -40,7 +40,7 @@ namespace BitsoClient.Examples.Demos
 
         public async Task PrintOpenOrders()
         {
-            var response = await apiClient.GetOpenOrders("eth_mxn");
+            var response = await apiClient.GetOpenOrdersAsync("eth_mxn");
 
             if (response.Success)
             {
@@ -55,7 +55,7 @@ namespace BitsoClient.Examples.Demos
         public async Task PrintCancelOrder()
         {
             string orderId = "ZqXWSvtXUIPLRZz9";
-            var response = await apiClient.CancelOrder(orderId);
+            var response = await apiClient.CancelOrderAsync(orderId);
 
             if (response.Success)
             {
@@ -74,7 +74,7 @@ namespace BitsoClient.Examples.Demos
                 Major = "0.03631629",
                 Price = "3496.01"
             };
-            var response = await apiClient.PlaceOrder(order);
+            var response = await apiClient.PlaceOrderAsync(order);
 
             if (response.Success)
             {
