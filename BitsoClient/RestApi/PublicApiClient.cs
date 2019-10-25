@@ -16,7 +16,7 @@ namespace BitsoClient.RestApi
             this.baseUrl = baseUrl;
         }
 
-        public async Task<BitsoClient.Models.Ticker.Payload> GetTicker(string book)
+        public async Task<BitsoClient.Models.Ticker.Payload> GetTickerAsync(string book)
         {
             string queryString = Params.ToQueryString(new Book(book));
             string url = $"{baseUrl}/ticker/{queryString}";
@@ -26,7 +26,7 @@ namespace BitsoClient.RestApi
             return apiResponse.Payload;
         }
 
-        public async Task<BitsoClient.Models.OrderBook.Payload> GetOrderBook(
+        public async Task<BitsoClient.Models.OrderBook.Payload> GetOrderBookAsync(
             string book,
             bool? aggregate = null)
         {
@@ -38,7 +38,7 @@ namespace BitsoClient.RestApi
             return apiResponse.Payload;
         }
 
-        public async Task<BitsoClient.Models.Trades.Trade[]> GetTrades(
+        public async Task<BitsoClient.Models.Trades.Trade[]> GetTradesAsync(
             string book,
             int? marker = null,
             string sort = null,

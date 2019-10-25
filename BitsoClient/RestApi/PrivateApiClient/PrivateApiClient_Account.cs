@@ -4,7 +4,7 @@ namespace BitsoClient.RestApi
 {
     public partial class PrivateApiClient
     {
-        public async Task<Models.AccountStatus.Response> GetAccountStatus()
+        public async Task<Models.AccountStatus.Response> GetAccountStatusAsync()
         {
             string endpoint = $"/{apiVersion}/account_status/";
             RequestOptions options = new RequestOptions("GET", endpoint);
@@ -17,7 +17,7 @@ namespace BitsoClient.RestApi
             };
         }
 
-        public async Task<Models.AccountBalance.Response> GetAccountBalance()
+        public async Task<Models.AccountBalance.Response> GetAccountBalanceAsync()
         {
             string endpoint = $"/{apiVersion}/balance/";
             RequestOptions options = new RequestOptions("GET", endpoint);

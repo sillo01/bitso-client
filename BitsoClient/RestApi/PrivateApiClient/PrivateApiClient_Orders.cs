@@ -6,7 +6,7 @@ namespace BitsoClient.RestApi
 {
     public partial class PrivateApiClient
     {
-        public async Task<Models.Orders.Reponse> GetOpenOrders(
+        public async Task<Models.Orders.Reponse> GetOpenOrdersAsync(
             string book,
             int? marker = null,
             string sort = null,
@@ -28,28 +28,28 @@ namespace BitsoClient.RestApi
             };
         }
 
-        public async Task<Models.ApiResponse<string[]>> CancelOrder(string orderId)
+        public async Task<Models.ApiResponse<string[]>> CancelOrderAsync(string orderId)
         {
             string endpoint = $"/{apiVersion}/orders/{orderId}/";
             RequestOptions options = new RequestOptions("DELETE", endpoint);
             return await SendRequest<string[]>(options);
         }
 
-        public async Task<Models.ApiResponse<string[]>> CancelOrders(string[] oids)
+        public async Task<Models.ApiResponse<string[]>> CancelOrdersAsync(string[] oids)
         {
             string endpoint = $"/{apiVersion}/orders/{string.Join("-", oids)}/";
             RequestOptions options = new RequestOptions("DELETE", endpoint);
             return await SendRequest<string[]>(options);
         }
 
-        public async Task<Models.ApiResponse<string[]>> CancelAllOrders()
+        public async Task<Models.ApiResponse<string[]>> CancelAllOrdersAsync()
         {
             string endpoint = $"/{apiVersion}/orders/all/";
             RequestOptions options = new RequestOptions("DELETE", endpoint);
             return await SendRequest<string[]>(options);
         }
 
-        public async Task<Models.ApiResponse<Models.Orders.OrderCreated>> PlaceOrder(Models.Orders.NewOrder order)
+        public async Task<Models.ApiResponse<Models.Orders.OrderCreated>> PlaceOrderAsync(Models.Orders.NewOrder order)
         {
             string endpoint = $"/{apiVersion}/orders/";
             RequestOptions options = new RequestOptions("POST", endpoint, order);

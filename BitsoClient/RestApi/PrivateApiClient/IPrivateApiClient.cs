@@ -4,12 +4,12 @@ namespace BitsoClient.RestApi
 {
     public interface IPrivateApiClient
     {
-        Task<Models.AccountStatus.Response> GetAccountStatus();
-        Task<Models.AccountBalance.Response> GetAccountBalance();
-        Task<Models.Orders.Reponse> GetOpenOrders(string book, int? marker = null, string sort = null, int? limit = null);
-        Task<Models.ApiResponse<string[]>> CancelOrder(string orderId);
-        Task<Models.ApiResponse<string[]>> CancelOrders(string[] oids);
-        Task<Models.ApiResponse<string[]>> CancelAllOrders();
-        Task<Models.ApiResponse<Models.Orders.OrderCreated>> PlaceOrder(Models.Orders.NewOrder order);
+        Task<Models.AccountStatus.Response> GetAccountStatusAsync();
+        Task<Models.AccountBalance.Response> GetAccountBalanceAsync();
+        Task<Models.Orders.Reponse> GetOpenOrdersAsync(string book, int? marker = null, string sort = null, int? limit = null);
+        Task<Models.ApiResponse<string[]>> CancelOrderAsync(string orderId);
+        Task<Models.ApiResponse<string[]>> CancelOrdersAsync(string[] oids);
+        Task<Models.ApiResponse<string[]>> CancelAllOrdersAsync();
+        Task<Models.ApiResponse<Models.Orders.OrderCreated>> PlaceOrderAsync(Models.Orders.NewOrder order);
     }
 }
