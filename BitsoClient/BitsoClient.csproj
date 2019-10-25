@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Gauayaba.BitsoClient</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>sillo01</Authors>
+    <Company>Guayaba</Company>
   </PropertyGroup>
 
   <ItemGroup>
