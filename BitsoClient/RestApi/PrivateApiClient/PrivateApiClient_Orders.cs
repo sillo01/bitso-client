@@ -1,12 +1,14 @@
 using System.Threading.Tasks;
 
 using BitsoClient.RestApi.Parameters;
+using BitsoClient.Models;
+using BitsoClient.Models.Orders;
 
 namespace BitsoClient.RestApi
 {
     public partial class PrivateApiClient
     {
-        public async Task<Models.Orders.Reponse> GetOpenOrdersAsync(
+        public async Task<Reponse> GetOpenOrdersAsync(
             string book,
             int? marker = null,
             string sort = null,
@@ -28,32 +30,25 @@ namespace BitsoClient.RestApi
             };
         }
 
-        public async Task<Models.ApiResponse<string[]>> CancelOrderAsync(string orderId)
+        public async Task<ApiResponse<Order[]>> LookupOrderAsync(string orderId)
         {
             string endpoint = $"/{apiVersion}/orders/{orderId}/";
-            RequestOptions options = new RequestOptions("DELETE", endpoint);
-            return await SendRequest<string[]>(options);
+            RequestOptions options = new RequestOptions("GET", endpoint);
+            return await SendRequest<Order[]>(options);
         }
 
-        public async Task<Models.ApiResponse<string[]>> CancelOrdersAsync(string[] oids)
+        public async Task<ApiResponse<Order[]>> LookupOrdersAsync(string[] oids)
         {
             string endpoint = $"/{apiVersion}/orders/{string.Join("-", oids)}/";
-            RequestOptions options = new RequestOptions("DELETE", endpoint);
-            return await SendRequest<string[]>(options);
+            RequestOptions options = new RequestOptions("GET", endpoint);
+            return await SendRequest<Order[]>(options);
         }
 
-        public async Task<Models.ApiResponse<string[]>> CancelAllOrdersAsync()
-        {
-            string endpoint = $"/{apiVersion}/orders/all/";
-            RequestOptions options = new RequestOptions("DELETE", endpoint);
-            return await SendRequest<string[]>(options);
-        }
-
-        public async Task<Models.ApiResponse<Models.Orders.OrderCreated>> PlaceOrderAsync(Models.Orders.NewOrder order)
+        public async Task<ApiResponse<OrderCreated>> PlaceOrderAsync(Models.Orders.NewOrder order)
         {
             string endpoint = $"/{apiVersion}/orders/";
             RequestOptions options = new RequestOptions("POST", endpoint, order);
-            return await SendRequest<Models.Orders.OrderCreated>(options);
+            return await SendRequest<OrderCreated>(options);
         }
     }
 }
