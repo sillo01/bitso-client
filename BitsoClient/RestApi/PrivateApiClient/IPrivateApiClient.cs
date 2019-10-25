@@ -7,7 +7,7 @@ namespace BitsoClient.RestApi
         Task<Models.AccountStatus.Response> GetAccountStatusAsync();
         Task<Models.AccountBalance.Response> GetAccountBalanceAsync();
         Task<Models.Orders.Reponse> GetOpenOrdersAsync(string book, int? marker = null, string sort = null, int? limit = null);
-        Task<Models.ApiResponse<Models.Orders.Order[]>> LookupOrderAsync(string orderId);
+        Task<Models.ApiResponse<Models.Orders.Order>> LookupOrderAsync(string orderId);
         Task<Models.ApiResponse<Models.Orders.Order[]>> LookupOrdersAsync(string[] oids);
         Task<Models.ApiResponse<string[]>> CancelOrderAsync(string orderId);
         Task<Models.ApiResponse<string[]>> CancelOrdersAsync(string[] oids);

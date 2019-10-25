@@ -30,11 +30,17 @@ namespace BitsoClient.RestApi
             };
         }
 
-        public async Task<ApiResponse<Order[]>> LookupOrderAsync(string orderId)
+        public async Task<ApiResponse<Order>> LookupOrderAsync(string orderId)
         {
             string endpoint = $"/{apiVersion}/orders/{orderId}/";
             RequestOptions options = new RequestOptions("GET", endpoint);
-            return await SendRequest<Order[]>(options);
+            ApiResponse<Order[]> response = await SendRequest<Order[]>(options);
+            return new ApiResponse<Order>()
+            {
+                Success = response.Success,
+                Error = response.Error,
+                Payload = (response.Payload != null && response.Payload.Length > 0) ? response.Payload[0] : null
+            };
         }
 
         public async Task<ApiResponse<Order[]>> LookupOrdersAsync(string[] oids)
