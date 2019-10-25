@@ -3,11 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Gauayaba.BitsoClient</PackageId>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <Authors>sillo01</Authors>
     <Company>Guayaba</Company>
     <RepositoryUrl>https://github.com/sillo01/bitso-client.git</RepositoryUrl> 
     <RepositoryType>git</RepositoryType> 
+    <PackageTags>Bitso;bitcoin;etherum;ripple;crypto</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
