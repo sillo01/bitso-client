@@ -7,7 +7,7 @@ using BitsoClient.Models;
 
 namespace BitsoClient.RestApi
 {
-    public partial class PrivateApiClient
+    public partial class PrivateApiClient : IPrivateApiClient
     {
         private readonly IHttpRequester _requester;
         private readonly string baseUrl;
