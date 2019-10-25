@@ -19,7 +19,8 @@ namespace BitsoClient.Tests.RestApi
             string tickerUrl = $"^{_baseUrl}/ticker";
             _requester.Setup(r => r.GetAsync(It.IsRegex(tickerUrl))).ReturnsAsync(_tickerResponse);
 
-            _client = new PublicApiClient(_requester.Object, _baseUrl);
+            var config = new ClientConfiguration(_baseUrl, null, null, null);
+            _client = new PublicApiClient(_requester.Object, config);
         }
 
         [Fact]

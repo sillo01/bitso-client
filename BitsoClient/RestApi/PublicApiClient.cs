@@ -10,10 +10,10 @@ namespace BitsoClient.RestApi
         private readonly IHttpRequester _requester;
         private readonly string baseUrl;
 
-        public PublicApiClient(IHttpRequester requester, string baseUrl)
+        public PublicApiClient(IHttpRequester requester, ClientConfiguration config)
         {
             _requester = requester;
-            this.baseUrl = baseUrl;
+            this.baseUrl = config.BaseUrl;
         }
 
         public async Task<BitsoClient.Models.Ticker.Payload> GetTickerAsync(string book)

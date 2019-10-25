@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Gauayaba.BitsoClient</PackageId>
-    <Version>0.1.2</Version>
+    <Version>0.1.3</Version>
     <Authors>sillo01</Authors>
     <Company>Guayaba</Company>
     <RepositoryUrl>https://github.com/sillo01/bitso-client.git</RepositoryUrl> 

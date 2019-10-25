@@ -12,8 +12,9 @@ namespace BitsoClient.Examples.Demos
         public PublicApiDemo(HttpClient client)
         {
             string baseUrl = Environment.GetEnvironmentVariable("BaseUrl");
+            var config = new ClientConfiguration(baseUrl, null, null, null);
             var requester = new HttpRequester(client);
-            this.client = new PublicApiClient(requester, baseUrl);
+            this.client = new PublicApiClient(requester, config);
         }
 
         public async Task PrintOrderBook()
