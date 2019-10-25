@@ -8,25 +8,40 @@ namespace BitsoClient.Models.Ticker
         [JsonPropertyAttribute("book")]
         public string Book { get; set; }
         [JsonPropertyAttribute("volume")]
-        public string Volume { get; set; }
+        internal string VolumeStr { get; set; }
         [JsonPropertyAttribute("high")]
-        public string High { get; set; }
+        internal string HighStr { get; set; }
         [JsonPropertyAttribute("last")]
-        public string Last { get; set; }
+        internal string LastStr { get; set; }
         [JsonPropertyAttribute("low")]
-        public string Low { get; set; }
+        internal string LowStr { get; set; }
         [JsonPropertyAttribute("vwap")]
-        public string Vwap { get; set; }
+        internal string VwapStr { get; set; }
         [JsonPropertyAttribute("ask")]
-        public string Ask { get; set; }
+        internal string AskStr { get; set; }
         [JsonPropertyAttribute("bid")]
-        public string Bid { get; set; }
+        internal string BidStr { get; set; }
         [JsonPropertyAttribute("created_at")]
         public DateTime CreatedAt { get; set; }
 
+        [JsonIgnore]
+        public double Volume => Convert.ToDouble(VolumeStr);
+        [JsonIgnore]
+        public double High => Convert.ToDouble(HighStr);
+        [JsonIgnore]
+        public double Last => Convert.ToDouble(LastStr);
+        [JsonIgnore]
+        public double Low => Convert.ToDouble(LowStr);
+        [JsonIgnore]
+        public double VWAP => Convert.ToDouble(VwapStr);
+        [JsonIgnore]
+        public double Ask => Convert.ToDouble(AskStr);
+        [JsonIgnore]
+        public double Bid => Convert.ToDouble(BidStr);
+
         public override string ToString()
         {
-            return $"Book: {Book}\nHigh: {High}\nLow: {Low}";
+            return $"Book: {Book}\nHigh: {HighStr}\nLow: {LowStr}";
         }
     }
 }
