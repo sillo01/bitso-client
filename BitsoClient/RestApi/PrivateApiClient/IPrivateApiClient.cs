@@ -10,6 +10,6 @@ namespace BitsoClient.RestApi
         Task<Models.ApiResponse<string[]>> CancelOrder(string orderId);
         Task<Models.ApiResponse<string[]>> CancelOrders(string[] oids);
         Task<Models.ApiResponse<string[]>> CancelAllOrders();
-        Task<Models.ApiResponse<Models.Orders.OrderCreated>> PlaceOrder(Models.Orders.NewOrder order)
+        Task<Models.ApiResponse<Models.Orders.OrderCreated>> PlaceOrder(Models.Orders.NewOrder order);
     }
 }
