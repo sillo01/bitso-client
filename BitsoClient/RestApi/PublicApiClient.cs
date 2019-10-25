@@ -5,7 +5,7 @@ using BitsoClient.RestApi.Parameters;
 
 namespace BitsoClient.RestApi
 {
-    public class PublicApiClient
+    public class PublicApiClient : IPUblicApiClient
     {
         private readonly IHttpRequester _requester;
         private readonly string baseUrl;
