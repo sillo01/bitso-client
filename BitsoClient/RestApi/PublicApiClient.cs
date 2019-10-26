@@ -13,7 +13,7 @@ namespace BitsoClient.RestApi
         public PublicApiClient(IHttpRequester requester, ClientConfiguration config)
         {
             _requester = requester;
-            this.baseUrl = config.BaseUrl;
+            this.baseUrl = $"{config.BaseUrl}/{config.ApiVersion}";
         }
 
         public async Task<BitsoClient.Models.Ticker.Payload> GetTickerAsync(string book)
