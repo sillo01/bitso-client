@@ -10,7 +10,7 @@ namespace BitsoClient.Models.Ticker
         [JsonPropertyAttribute("volume")]
         internal string VolumeStr { get; set; }
         [JsonPropertyAttribute("high")]
-        internal string HighStr { get; set; }
+        string HighStr { get; set; }
         [JsonPropertyAttribute("last")]
         internal string LastStr { get; set; }
         [JsonPropertyAttribute("low")]
@@ -29,7 +29,14 @@ namespace BitsoClient.Models.Ticker
         [JsonIgnore]
         public double High => Convert.ToDouble(HighStr);
         [JsonIgnore]
-        public double Last => Convert.ToDouble(LastStr);
+        public double Last
+        {
+            get => Convert.ToDouble(LastStr);
+            set
+            {
+                LastStr = value.ToString();
+            }
+        }
         [JsonIgnore]
         public double Low => Convert.ToDouble(LowStr);
         [JsonIgnore]
