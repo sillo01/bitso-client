@@ -5,8 +5,7 @@ namespace BitsoClient.RestApi
 {
     public interface IHttpRequester
     {
-        Task<string> GetAsync(string url);
-        Task<HttpResponseMessage> SendAsycn(HttpRequestMessage requestMessage);
+        Task<string> SendAsycn(IRequestOptions requestOptions);
     }
     public class HttpRequester : IHttpRequester
     {
@@ -17,16 +16,12 @@ namespace BitsoClient.RestApi
             _client = client;
         }
 
-        public async Task<string> GetAsync(string url)
+        public async Task<string> SendAsycn(IRequestOptions requestOptions)
         {
-            HttpResponseMessage response = await _client.GetAsync(url);
-            string jsonContent = await response.Content.ReadAsStringAsync();
-            return jsonContent;
-        }
-
-        public async Task<HttpResponseMessage> SendAsycn(HttpRequestMessage requestMessage)
-        {
-            return await _client.SendAsync(requestMessage);
+            HttpRequestMessage requestMessage = requestOptions.ComposeRequestMessage();
+            HttpResponseMessage response = await _client.SendAsync(requestMessage);
+            string content = await response.Content.ReadAsStringAsync();
+            return content;
         }
     }
 }

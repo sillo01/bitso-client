@@ -1,3 +1,4 @@
+using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -19,7 +20,7 @@ namespace BitsoClient.RestApi
         public async Task<BitsoClient.Models.Ticker.Payload> GetTickerAsync(string book)
         {
             string queryString = Params.ToQueryString(new Book(book));
-            string url = $"{baseUrl}/ticker/{queryString}";
+            string url = $"/ticker/{queryString}";
             
             var apiResponse = await Get<BitsoClient.Models.Ticker.Response>(url);
 
@@ -31,7 +32,7 @@ namespace BitsoClient.RestApi
             bool? aggregate = null)
         {
             string queryString = Params.ToQueryString(new Book(book), new Aggregate(aggregate));
-            string url = $"{baseUrl}/order_book/{queryString}";
+            string url = $"/order_book/{queryString}";
             
             var apiResponse = await Get<BitsoClient.Models.OrderBook.Response>(url);
 
@@ -49,17 +50,18 @@ namespace BitsoClient.RestApi
                 new Marker(marker),
                 new Sort(sort),
                 new Limit(limit));
-            string url = $"{baseUrl}/trades/{queryString}";
+            string url = $"/trades/{queryString}";
 
             var apiResponse = await Get<BitsoClient.Models.Trades.Response>(url);
 
             return apiResponse.Payload;
         }
 
-        private async Task<T> Get<T>(string url)
+        private async Task<T> Get<T>(string path)
         {
-            string jsonContent = await _requester.GetAsync(url);
-            return  JsonConvert.DeserializeObject<T>(jsonContent);
+            REquestOptions options = new REquestOptions(baseUrl, path);
+            string content = await _requester.SendAsycn(options);
+            return  JsonConvert.DeserializeObject<T>(content);
         }
     }
 }
