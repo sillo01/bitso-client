@@ -4,16 +4,16 @@ using System.Net.Http;
 
 namespace BitsoClient.RestApi
 {
-    public class RequesOptionsEncrypted : IRequestOptions
+    public class RequestOptionsEncrypted : IRequestOptions
     {
         private readonly ClientConfiguration configuration;
-        public RequesOptionsEncrypted(ClientConfiguration configuration, HttpMethod method, string path)
+        public RequestOptionsEncrypted(ClientConfiguration configuration, HttpMethod method, string path)
         {
             this.configuration = configuration;
             Method = method;
             Path = path;
         }
-        public RequesOptionsEncrypted(ClientConfiguration configuration, HttpMethod method, string path, string payload) : this(configuration, method, path)
+        public RequestOptionsEncrypted(ClientConfiguration configuration, HttpMethod method, string path, string payload) : this(configuration, method, path)
         {
             Payload = payload;
         }
