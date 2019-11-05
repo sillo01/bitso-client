@@ -1,3 +1,6 @@
+using System.Text;
+using System.Security.Cryptography;
+
 namespace BitsoClient.RestApi
 {
     public class ClientConfiguration
@@ -18,6 +21,12 @@ namespace BitsoClient.RestApi
             ApiVersion = version;
             ApiKey = key;
             ApiSecret = secret;
+        }
+
+        public HMACSHA256 GenerateHmac()
+        {
+            byte[] secret = Encoding.UTF8.GetBytes(ApiSecret);
+            return new HMACSHA256(secret);
         }
     }
 }
