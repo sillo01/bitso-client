@@ -1,4 +1,5 @@
 using System.Text;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
@@ -14,6 +15,7 @@ namespace BitsoClient.RestApi
         private readonly string apiVersion;
         private readonly string key;
         private readonly byte[] secret;
+        private readonly ClientConfiguration configuration;
 
         public PrivateApiClient(IHttpRequester requester, ClientConfiguration config)
         {
@@ -22,18 +24,19 @@ namespace BitsoClient.RestApi
             apiVersion = config.ApiVersion;
             key = config.ApiKey;
             secret = Encoding.UTF8.GetBytes(config.ApiSecret);
+            this.configuration = config;
         }
 
-        public async Task<ApiResponse<T>> SendRequest<T>(RequestOptions options)
+        public async Task<ApiResponse<T>> SendRequest<T>(HttpMethod method, string path, string payload = null)
         {
-            using(HMACSHA256 hmac = new HMACSHA256(secret))
-            {
-                var request = options.ComposeRequestMessage(hmac, baseUrl, key);
-                var response = await _requester.SendAsycn(request);
-                string content = await response.Content.ReadAsStringAsync();
+            RequestOptionsEncrypted requestOptions = new RequestOptionsEncrypted(
+                configuration,
+                method,
+                path,
+                payload);
+            string content = await _requester.SendAsycn(requestOptions);
 
-                return JsonConvert.DeserializeObject<ApiResponse<T>>(content);
-            }
+            return JsonConvert.DeserializeObject<ApiResponse<T>>(content);
         }
     }
 }

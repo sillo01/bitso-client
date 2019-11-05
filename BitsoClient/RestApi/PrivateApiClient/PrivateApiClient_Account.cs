@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace BitsoClient.RestApi
 {
@@ -7,8 +8,7 @@ namespace BitsoClient.RestApi
         public async Task<Models.AccountStatus.Response> GetAccountStatusAsync()
         {
             string endpoint = $"/{apiVersion}/account_status/";
-            RequestOptions options = new RequestOptions("GET", endpoint);
-            var response = await SendRequest<Models.AccountStatus.Payload>(options);
+            var response = await SendRequest<Models.AccountStatus.Payload>(HttpMethod.Get, endpoint);
             return new Models.AccountStatus.Response()
             {
                 Success = response.Success,
@@ -20,8 +20,7 @@ namespace BitsoClient.RestApi
         public async Task<Models.AccountBalance.Response> GetAccountBalanceAsync()
         {
             string endpoint = $"/{apiVersion}/balance/";
-            RequestOptions options = new RequestOptions("GET", endpoint);
-            var response = await SendRequest<Models.AccountBalance.Payload>(options);
+            var response = await SendRequest<Models.AccountBalance.Payload>(HttpMethod.Get, endpoint);
             return new Models.AccountBalance.Response()
             {
                 Success = response.Success,

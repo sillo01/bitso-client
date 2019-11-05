@@ -1,4 +1,6 @@
 using System.Threading.Tasks;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 using BitsoClient.RestApi.Parameters;
 using BitsoClient.Models;
@@ -20,21 +22,19 @@ namespace BitsoClient.RestApi
                 new Marker(marker),
                 new Sort(sort),
                 new Limit(limit));
-            RequestOptions options = new RequestOptions("GET", $"{endpoint}{queryString}");
-            var respone = await SendRequest<Models.Orders.Order[]>(options);
+            var response = await SendRequest<Models.Orders.Order[]>(HttpMethod.Get, $"{endpoint}{queryString}");
             return new Models.Orders.Reponse()
             {
-                Success = respone.Success,
-                Payload = respone.Payload,
-                Error = respone.Error
+                Success = response.Success,
+                Payload = response.Payload,
+                Error = response.Error
             };
         }
 
         public async Task<ApiResponse<Order>> LookupOrderAsync(string orderId)
         {
             string endpoint = $"/{apiVersion}/orders/{orderId}/";
-            RequestOptions options = new RequestOptions("GET", endpoint);
-            ApiResponse<Order[]> response = await SendRequest<Order[]>(options);
+            ApiResponse<Order[]> response = await SendRequest<Order[]>(HttpMethod.Get, endpoint);
             return new ApiResponse<Order>()
             {
                 Success = response.Success,
@@ -46,15 +46,14 @@ namespace BitsoClient.RestApi
         public async Task<ApiResponse<Order[]>> LookupOrdersAsync(string[] oids)
         {
             string endpoint = $"/{apiVersion}/orders/{string.Join("-", oids)}/";
-            RequestOptions options = new RequestOptions("GET", endpoint);
-            return await SendRequest<Order[]>(options);
+            return await SendRequest<Order[]>(HttpMethod.Get, endpoint);
         }
 
         public async Task<ApiResponse<OrderCreated>> PlaceOrderAsync(Models.Orders.NewOrder order)
         {
             string endpoint = $"/{apiVersion}/orders/";
             RequestOptions options = new RequestOptions("POST", endpoint, order);
-            return await SendRequest<OrderCreated>(options);
+            return await SendRequest<OrderCreated>(HttpMethod.Post, endpoint, JsonConvert.SerializeObject(order));
         }
     }
 }
