@@ -59,7 +59,7 @@ namespace BitsoClient.RestApi
 
         private async Task<T> Get<T>(string path)
         {
-            REquestOptions options = new REquestOptions(baseUrl, path);
+            RequestOptions options = new RequestOptions(baseUrl, path);
             string content = await _requester.SendAsycn(options);
             return  JsonConvert.DeserializeObject<T>(content);
         }

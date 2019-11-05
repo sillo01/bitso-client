@@ -52,7 +52,6 @@ namespace BitsoClient.RestApi
         public async Task<ApiResponse<OrderCreated>> PlaceOrderAsync(Models.Orders.NewOrder order)
         {
             string endpoint = $"/{apiVersion}/orders/";
-            RequestOptions options = new RequestOptions("POST", endpoint, order);
             return await SendRequest<OrderCreated>(HttpMethod.Post, endpoint, JsonConvert.SerializeObject(order));
         }
     }

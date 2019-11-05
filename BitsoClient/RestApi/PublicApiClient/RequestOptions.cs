@@ -2,9 +2,9 @@ using System.Net.Http;
 
 namespace BitsoClient.RestApi
 {
-    public class REquestOptions : IRequestOptions
+    public class RequestOptions : IRequestOptions
     {
-        public REquestOptions(string baseUrl, string path)
+        public RequestOptions(string baseUrl, string path)
         {
             Method = HttpMethod.Get;
             Url = baseUrl + path;
