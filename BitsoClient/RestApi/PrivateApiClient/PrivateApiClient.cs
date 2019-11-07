@@ -11,19 +11,13 @@ namespace BitsoClient.RestApi
     public partial class PrivateApiClient : IPrivateApiClient
     {
         private readonly IHttpRequester _requester;
-        private readonly string baseUrl;
         private readonly string apiVersion;
-        private readonly string key;
-        private readonly byte[] secret;
         private readonly ClientConfiguration configuration;
 
         public PrivateApiClient(IHttpRequester requester, ClientConfiguration config)
         {
             _requester = requester;
-            baseUrl = config.BaseUrl;
             apiVersion = config.ApiVersion;
-            key = config.ApiKey;
-            secret = Encoding.UTF8.GetBytes(config.ApiSecret);
             this.configuration = config;
         }
 
