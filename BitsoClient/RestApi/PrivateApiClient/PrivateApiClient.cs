@@ -28,7 +28,7 @@ namespace BitsoClient.RestApi
                 method,
                 path,
                 payload);
-            string content = await _requester.SendAsycn(requestOptions);
+            string content = await _requester.SendAsync(requestOptions);
 
             return JsonConvert.DeserializeObject<ApiResponse<T>>(content);
         }

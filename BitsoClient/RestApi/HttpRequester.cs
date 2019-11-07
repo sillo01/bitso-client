@@ -5,7 +5,7 @@ namespace BitsoClient.RestApi
 {
     public interface IHttpRequester
     {
-        Task<string> SendAsycn(IRequestOptions requestOptions);
+        Task<string> SendAsync(IRequestOptions requestOptions);
     }
     public class HttpRequester : IHttpRequester
     {
@@ -16,7 +16,7 @@ namespace BitsoClient.RestApi
             _client = client;
         }
 
-        public async Task<string> SendAsycn(IRequestOptions requestOptions)
+        public async Task<string> SendAsync(IRequestOptions requestOptions)
         {
             HttpRequestMessage requestMessage = requestOptions.ComposeRequestMessage();
             HttpResponseMessage response = await _client.SendAsync(requestMessage);

@@ -16,8 +16,7 @@ namespace BitsoClient.Tests.RestApi
         {
             _requester = new Mock<IHttpRequester>();
 
-            string tickerUrl = $"^{_baseUrl}/ticker";
-            _requester.Setup(r => r.SendAsycn(It.IsAny<RequestOptions>())).ReturnsAsync(_tickerResponse);
+            _requester.Setup(r => r.SendAsync(It.IsAny<RequestOptions>())).ReturnsAsync(_tickerResponse);
 
             var config = new ClientConfiguration(_baseUrl, null, null, null);
             _client = new PublicApiClient(_requester.Object, config);
