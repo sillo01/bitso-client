@@ -1,8 +1,8 @@
-using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 using BitsoClient.RestApi.Parameters;
+using BitsoClient.RestApi.Consumers;
 
 namespace BitsoClient.RestApi
 {

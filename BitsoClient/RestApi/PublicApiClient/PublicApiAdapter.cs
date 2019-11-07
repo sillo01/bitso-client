@@ -1,5 +1,7 @@
 using System;
 
+using BitsoClient.RestApi.Consumers;
+
 namespace BitsoClient.RestApi
 {
     public class PublicApiAdapter

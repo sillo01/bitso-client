@@ -3,6 +3,7 @@ using Moq;
 using System.Threading.Tasks;
 
 using BitsoClient.RestApi;
+using BitsoClient.RestApi.Consumers;
 
 namespace BitsoClient.Tests.RestApi
 {

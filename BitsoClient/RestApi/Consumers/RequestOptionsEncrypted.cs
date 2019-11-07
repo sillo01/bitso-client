@@ -2,11 +2,12 @@ using System;
 using System.Text;
 using System.Net.Http;
 
-namespace BitsoClient.RestApi
+namespace BitsoClient.RestApi.Consumers
 {
-    public class RequestOptionsEncrypted : IRequestOptions
+    public class RequestOptionsEncrypted : AbastractRequestOptions
     {
         private readonly ClientConfiguration configuration;
+        private readonly string Path;
         public RequestOptionsEncrypted(ClientConfiguration configuration, HttpMethod method, string path)
         {
             this.configuration = configuration;
@@ -18,15 +19,12 @@ namespace BitsoClient.RestApi
             Payload = payload;
         }
 
-        public HttpMethod Method { get; }
-        public string Path { get; }
-        public string Payload { get; }
-        public string Url
+        public override string Url
         {
             get { return configuration.BaseUrl + Path; }
         }
 
-        public HttpRequestMessage ComposeRequestMessage()
+        public override HttpRequestMessage ComposeRequestMessage()
         {
             long nonce = GetTimeStamp();
             string signature = GetSignature(nonce);

@@ -1,21 +1,18 @@
 using System.Net.Http;
 
-namespace BitsoClient.RestApi
+namespace BitsoClient.RestApi.Consumers
 {
-    public class RequestOptions : IRequestOptions
+    public class RequestOptions : AbastractRequestOptions
     {
         public RequestOptions(string baseUrl, string path)
         {
             Method = HttpMethod.Get;
             Url = baseUrl + path;
         }
-        public HttpMethod Method { get; }
 
-        public string Url { get; }
+        public override string Payload => "";
 
-        public string Payload => "";
-
-        public HttpRequestMessage ComposeRequestMessage()
+        public override HttpRequestMessage ComposeRequestMessage()
         {
             return new HttpRequestMessage(Method, Url);
         }

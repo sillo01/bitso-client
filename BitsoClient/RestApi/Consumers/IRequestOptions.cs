@@ -1,6 +1,6 @@
 using System.Net.Http;
 
-namespace BitsoClient.RestApi
+namespace BitsoClient.RestApi.Consumers
 {
     public interface IRequestOptions
     {

@@ -1,10 +1,9 @@
-using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Security.Cryptography;
 using Newtonsoft.Json;
 
 using BitsoClient.Models;
+using BitsoClient.RestApi.Consumers;
 
 namespace BitsoClient.RestApi
 {
