@@ -26,7 +26,18 @@ namespace BitsoClient.Tests.RestApi
             
             Assert.Equal(HttpMethod.Get, reqMessage.Method);
             Assert.Equal("/base/url/my/path", reqMessage.RequestUri.ToString());
-            var authHeader = reqMessage.Headers.Authorization;
+        }
+
+        [Fact]
+        public async void ComposePostRequest()
+        {
+            RequestOptionsEncrypted options = new RequestOptionsEncrypted(config, HttpMethod.Post, "/my/path", "['prop1': 12, 'prop2': 'abc']");
+            var reqMessage = options.ComposeRequestMessage();
+            
+            Assert.Equal(HttpMethod.Post, reqMessage.Method);
+            Assert.Equal("/base/url/my/path", reqMessage.RequestUri.ToString());
+            string content = await reqMessage.Content.ReadAsStringAsync();
+            Assert.Equal("['prop1': 12, 'prop2': 'abc']", content);
         }
     }
 }
