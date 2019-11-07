@@ -47,7 +47,7 @@ namespace BitsoClient.RestApi
             return request;
         }
 
-        string GetSignature(long nonce)
+        private string GetSignature(long nonce)
         {
             string message = nonce+Method.Method.ToUpper()+Path+Payload;
             byte[] encodedMessage = Encoding.UTF8.GetBytes(message);
