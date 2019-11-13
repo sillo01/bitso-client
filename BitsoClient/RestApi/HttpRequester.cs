@@ -1,7 +1,10 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 
+using BitsoClient.Models;
 using BitsoClient.RestApi.Consumers;
 
 namespace BitsoClient.RestApi
@@ -9,11 +12,13 @@ namespace BitsoClient.RestApi
     public interface IHttpRequester
     {
         Task<string> SendAsync(IRequestOptions requestOptions);
+        int AddConsumer(IRequestConsumer consumer);
+        Task<bool> FulfillRequestsAsync();
     }
     public class HttpRequester : IHttpRequester
     {
         private readonly HttpClient _client;
-        private Dictionary<IRequestOptions, IList<IRequestConsumer>> requestQueue;
+        private Dictionary<IRequestOptions, IList<IRequestConsumer>> requestBag;
 
         public HttpRequester(HttpClient client)
         {
@@ -30,17 +35,34 @@ namespace BitsoClient.RestApi
 
         public int AddConsumer(IRequestConsumer consumer)
         {
-            if (requestQueue == null)
+            if (requestBag == null)
             {
-                requestQueue = new Dictionary<IRequestOptions, IList<IRequestConsumer>>();
+                requestBag = new Dictionary<IRequestOptions, IList<IRequestConsumer>>();
             }
             var requestOptions = consumer.GetRequestOptions();
-            if (!requestQueue.ContainsKey(requestOptions))
+            if (!requestBag.ContainsKey(requestOptions))
             {
-                requestQueue.Add(requestOptions, new List<IRequestConsumer>());
+                requestBag.Add(requestOptions, new List<IRequestConsumer>());
             }
-            requestQueue[requestOptions].Add(consumer);
-            return requestQueue.Count;
+            requestBag[requestOptions].Add(consumer);
+            return requestBag.Count;
+        }
+
+        public async Task<bool> FulfillRequestsAsync()
+        {
+            var requestTasks = requestBag.Select(b => FeedRequestConsumersAsync(b.Key, b.Value));
+            var responses = await Task.WhenAll(requestTasks);
+            return responses.All(r => r);
+        }
+
+        private async Task<bool> FeedRequestConsumersAsync(IRequestOptions options, IEnumerable<IRequestConsumer> consumers)
+        {
+            string response = await SendAsync(options);
+            foreach (var consumer in consumers)
+            {
+                consumer.Consume(response);
+            }
+            return true;
         }
     }
 }
